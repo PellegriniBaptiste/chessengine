@@ -1,5 +1,7 @@
 package board;
 
+import move.Move;
+
 public class Board {
 	private static final int BOARD_SIZE = 70;
 	/**
@@ -18,6 +20,12 @@ public class Board {
 	public Board(Board other){
 		init();
 		System.arraycopy(other.datas, 0, datas, 0, BOARD_SIZE);
+	}
+	
+	public Board(Board other,Move move){
+		init();
+		System.arraycopy(other.datas, 0, datas, 0, BOARD_SIZE);
+		//TODO apply move
 	}
 	
 	private void init(){
