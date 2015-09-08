@@ -1,5 +1,7 @@
 package board;
 
+import java.util.List;
+
 import piece.Piece;
 import piece.Pieces;
 import move.Move;
@@ -47,7 +49,6 @@ public class Board {
 	}
 
 	private void setStartBoard(){
-		//TODO implement
 		datas[000]=Piece.R.value();
 		datas[001]=Piece.N.value();
 		datas[002]=Piece.B.value();
@@ -86,5 +87,10 @@ public class Board {
 		//TODO print other info
 
 		return sb.toString();
+	}
+	
+	public List<Move> getAllowedMoves(){
+		//TODO implement
+		return null;
 	}
 }
