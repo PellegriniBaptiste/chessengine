@@ -89,6 +89,18 @@ public class Board {
 		return sb.toString();
 	}
 	
+	public void applyMove(Move move){
+		//TODO implement
+		Piece piece=move.getPiece();
+		byte start=move.getStart();
+		byte end=move.getEnd();
+		
+		datas[start]=Piece.EMPTY.value();
+		datas[end]=piece.value();
+		
+		//TODO update other info
+	}
+	
 	public List<Move> getAllowedMoves(){
 		//TODO implement
 		return null;
