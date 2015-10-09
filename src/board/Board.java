@@ -1,6 +1,8 @@
 package board;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import piece.Piece;
 import piece.Pieces;
@@ -41,7 +43,7 @@ public class Board {
 	public Board(Board other,Move move){
 		init();
 		System.arraycopy(other.datas, 0, datas, 0, ARRAY_SIZE);
-		//TODO apply move
+		applyMove(move);
 	}
 
 	private void init(){
@@ -101,8 +103,20 @@ public class Board {
 		//TODO update other info
 	}
 	
-	public List<Move> getAllowedMoves(){
+	public Set<Move> getAllowedMoves(){
 		//TODO implement
-		return null;
+		Set<Move> allowedMoves=new HashSet<Move>();
+		
+		for(byte i =00;i<0100;++i){
+			allowedMoves.addAll(getPieceAllowedMoves(i));
+		}
+		
+		return allowedMoves;
+	}
+	
+	private Set<Move> getPieceAllowedMoves(byte squareOffset){
+		Set<Move> allowedMoves=new HashSet<Move>();
+		//TODO implement
+		return allowedMoves;
 	}
 }
