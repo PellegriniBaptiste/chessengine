@@ -116,7 +116,12 @@ public class Board {
 	
 	private Set<Move> getPieceAllowedMoves(byte squareOffset){
 		Set<Move> allowedMoves=new HashSet<Move>();
+		Piece piece=getPiece(squareOffset);
 		//TODO implement
-		return allowedMoves;
+		return piece.getAllowedMoves(this);
+	}
+	
+	public Piece getPiece(byte squareOffset){
+		return Pieces.getPiece(datas[squareOffset]);
 	}
 }
