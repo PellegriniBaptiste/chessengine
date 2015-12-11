@@ -90,38 +90,56 @@ public class Board {
 
 		return sb.toString();
 	}
-	
+
 	public void applyMove(Move move){
 		//TODO implement
 		Piece piece=move.getPiece();
 		byte start=move.getStart();
 		byte end=move.getEnd();
-		
+
 		datas[start]=Piece.EMPTY.value();
 		datas[end]=piece.value();
-		
+
 		//TODO update other info
 	}
-	
+
 	public Set<Move> getAllowedMoves(){
 		//TODO implement
 		Set<Move> allowedMoves=new HashSet<Move>();
-		
+
 		for(byte i =00;i<0100;++i){
 			allowedMoves.addAll(getPieceAllowedMoves(i));
 		}
-		
+
 		return allowedMoves;
 	}
-	
+
 	private Set<Move> getPieceAllowedMoves(byte squareOffset){
 		Set<Move> allowedMoves=new HashSet<Move>();
 		Piece piece=getPiece(squareOffset);
 		//TODO implement
 		return piece.getAllowedMoves(this);
 	}
-	
+
 	public Piece getPiece(byte squareOffset){
 		return Pieces.getPiece(datas[squareOffset]);
+	}
+
+	public boolean isKingChecked(boolean isWhite ){
+
+		//TODO implement
+		return false;
+	}
+
+	public byte findKing(boolean isWhite){
+		Piece king=(isWhite)?Piece.K:Piece.k;
+
+		for(byte i =00;i<0100;++i){
+			if(king.equals(getPiece(i))){
+				return i;
+			}
+		}
+
+		throw new InvalidBoardException("No king found");
 	}
 }

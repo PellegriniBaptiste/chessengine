@@ -42,5 +42,16 @@ public class BoardTest {
 				+ "P P P P . P P P \n"
 				+ "R N B Q K B N R \n");
 	}
+	
+	@Test
+	public void findKingsTest() {
+		Board board=new Board();
+		String s=board.toString();
+		byte whiteK=board.findKing(true);
+		byte blackK=board.findKing(false);
+		
+		System.out.println("White King is in : "+whiteK);
+		System.out.println("Black King is in : "+blackK);
+	}
 
 }
