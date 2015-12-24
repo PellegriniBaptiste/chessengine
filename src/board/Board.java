@@ -128,6 +128,11 @@ public class Board {
 	public boolean isKingChecked(boolean isWhite ){
 
 		//TODO implement
+		byte kingPos=findKing(isWhite);
+		
+		
+		
+		
 		return false;
 	}
 
@@ -142,4 +147,6 @@ public class Board {
 
 		throw new InvalidBoardException("No king found");
 	}
+	
+	
 }

@@ -46,7 +46,7 @@ public class BoardTest {
 	@Test
 	public void findKingsTest() {
 		Board board=new Board();
-		String s=board.toString();
+		//String s=board.toString();
 		byte whiteK=board.findKing(true);
 		byte blackK=board.findKing(false);
 		
