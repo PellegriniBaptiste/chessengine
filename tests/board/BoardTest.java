@@ -53,5 +53,14 @@ public class BoardTest {
 		System.out.println("White King is in : "+whiteK);
 		System.out.println("Black King is in : "+blackK);
 	}
+	
+	@Test
+	public void stepTest(){
+		for(byte i=00;i<0100;++i){
+			for(Direction dir : Direction.values()){
+				System.out.println(Integer.toOctalString(i)+" : "+dir.name()+" -> "+Integer.toOctalString(dir.getStep(i)));
+			}
+		}
+	}
 
 }

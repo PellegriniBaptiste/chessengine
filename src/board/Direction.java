@@ -23,9 +23,23 @@ public enum Direction {
 		this.step=step;
 	}
 	
-	public byte step;
+	private byte step;
+
+	
 
 	public byte getStep(byte pos){
-		return (byte) ((BoardUtils.isInBound((byte) pos,this))?pos+step:-1);
+		boolean isStepPossible=true;
+		isStepPossible=isStepPossible&&(pos+step>=00)&&(pos+step<0100);
+		isStepPossible=isStepPossible
+				&&(!(pos%010==0&&(step%010==-1||step%010==-2||step%010==7||step%010==6)));//"A" file and go west
+		isStepPossible=isStepPossible
+				&&(!(pos%010==1&&(step%010==-2||step%010==6)));//"B" file and go west west
+		isStepPossible=isStepPossible
+				&&(!(pos%010==7&&(step%010==1||step%010==2||step%010==-6||step%010==-7)));//"H" file and go east
+		isStepPossible=isStepPossible
+				&&(!(pos%010==6&&(step%010==2||step%010==-6)));//"G" file and go east east
+
+						
+		return (byte) ((isStepPossible)?pos+step:-1);
 	}
 }
