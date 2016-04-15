@@ -1,5 +1,6 @@
 package piece;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import move.Move;
@@ -17,7 +18,7 @@ public enum Piece {
 		@Override
 		public Set<Move> getAllowedMoves(Board board) {
 			// TODO Auto-generated method stub
-			return null;
+			 return new HashSet<Move>();
 		}
 
 	},
@@ -29,8 +30,9 @@ public enum Piece {
 
 		@Override
 		public Set<Move> getAllowedMoves(Board board) {
+			Set<Move> allowedMoves=new HashSet<Move>();
 			// TODO Auto-generated method stub
-			return null;
+			return allowedMoves;
 		}
 	},
 	R((byte)02) {
@@ -41,8 +43,9 @@ public enum Piece {
 
 		@Override
 		public Set<Move> getAllowedMoves(Board board) {
+			Set<Move> allowedMoves=new HashSet<Move>();
 			// TODO Auto-generated method stub
-			return null;
+			return allowedMoves;
 		}
 	},
 	N((byte)03) {
@@ -53,8 +56,9 @@ public enum Piece {
 
 		@Override
 		public Set<Move> getAllowedMoves(Board board) {
+			Set<Move> allowedMoves=new HashSet<Move>();
 			// TODO Auto-generated method stub
-			return null;
+			return allowedMoves;
 		}
 	},
 	B((byte)04) {
@@ -65,8 +69,9 @@ public enum Piece {
 
 		@Override
 		public Set<Move> getAllowedMoves(Board board) {
+			Set<Move> allowedMoves=new HashSet<Move>();
 			// TODO Auto-generated method stub
-			return null;
+			return allowedMoves;
 		}
 	},
 	Q((byte)05) {
@@ -77,8 +82,9 @@ public enum Piece {
 
 		@Override
 		public Set<Move> getAllowedMoves(Board board) {
+			Set<Move> allowedMoves=new HashSet<Move>();
 			// TODO Auto-generated method stub
-			return null;
+			return allowedMoves;
 		}
 	},
 	K((byte)06) {
@@ -89,8 +95,9 @@ public enum Piece {
 
 		@Override
 		public Set<Move> getAllowedMoves(Board board) {
+			Set<Move> allowedMoves=new HashSet<Move>();
 			// TODO Auto-generated method stub
-			return null;
+			return allowedMoves;
 		}
 	},
 
@@ -103,8 +110,9 @@ public enum Piece {
 
 		@Override
 		public Set<Move> getAllowedMoves(Board board) {
+			Set<Move> allowedMoves=new HashSet<Move>();
 			// TODO Auto-generated method stub
-			return null;
+			return allowedMoves;
 		}
 	},
 	r((byte)010) {
@@ -115,8 +123,9 @@ public enum Piece {
 
 		@Override
 		public Set<Move> getAllowedMoves(Board board) {
+			Set<Move> allowedMoves=new HashSet<Move>();
 			// TODO Auto-generated method stub
-			return null;
+			return allowedMoves;
 		}
 	},
 	n((byte)011) {
@@ -127,8 +136,9 @@ public enum Piece {
 
 		@Override
 		public Set<Move> getAllowedMoves(Board board) {
+			Set<Move> allowedMoves=new HashSet<Move>();
 			// TODO Auto-generated method stub
-			return null;
+			return allowedMoves;
 		}
 	},
 	b((byte)012) {
@@ -139,8 +149,9 @@ public enum Piece {
 
 		@Override
 		public Set<Move> getAllowedMoves(Board board) {
+			Set<Move> allowedMoves=new HashSet<Move>();
 			// TODO Auto-generated method stub
-			return null;
+			return allowedMoves;
 		}
 	},
 	q((byte)013) {
@@ -151,8 +162,9 @@ public enum Piece {
 
 		@Override
 		public Set<Move> getAllowedMoves(Board board) {
+			Set<Move> allowedMoves=new HashSet<Move>();
 			// TODO Auto-generated method stub
-			return null;
+			return allowedMoves;
 		}
 	},
 
@@ -165,8 +177,9 @@ public enum Piece {
 
 		@Override
 		public Set<Move> getAllowedMoves(Board board) {
+			Set<Move> allowedMoves=new HashSet<Move>();
 			// TODO Auto-generated method stub
-			return null;
+			return allowedMoves;
 		}
 	};
 

@@ -46,6 +46,90 @@ public class Board {
 		applyMove(move);
 	}
 
+	public Board(String input){
+		init();
+		/** create a board from a string input that represents a position
+		 * This constructor is used for test purposes
+		 */
+		/*
+		 * Format :
+		 * "r n b q k b n r \n"
+		 * "p p p p p p p p \n"
+		 * ". . . . . . . . \n"
+		 * ". . . . . . . . \n"
+		 * ". . . . P . . . \n"
+		 * ". . . . . . . . \n"
+		 * "P P P P . P P P \n"
+		 * "R N B Q K B N R \n"
+		 */
+		String lines[]=input.split("\n");
+		if(lines.length!=BOARD_SIZE){
+			throw new IllegalArgumentException();
+		}
+		int i=0;
+		int j=0;
+		for(String line:lines){		
+			String squares[]=line.split(" ");
+			if(squares.length!=BOARD_SIZE){
+				System.out.println(squares.length);
+				// the last squares' value should be empty (each line's end is "[ ]\n")
+				throw new IllegalArgumentException();
+			}
+			for(String square:squares){
+				//TODO implement
+				byte sq=Piece.EMPTY.value();
+				switch(square){
+				case ".":
+					sq=Piece.EMPTY.value();
+					break;
+				case "P":
+					sq=Piece.P.value();
+					break;
+				case "R":
+					sq=Piece.R.value();
+					break;
+				case "N":
+					sq=Piece.N.value();
+					break;
+				case "B":
+					sq=Piece.B.value();
+					break;
+				case "Q":
+					sq=Piece.Q.value();
+					break;
+				case "K":
+					sq=Piece.K.value();
+					break;
+				case "p":
+					sq=Piece.p.value();
+					break;
+				case "r":
+					sq=Piece.r.value();
+					break;
+				case "n":
+					sq=Piece.n.value();
+					break;
+				case "b":
+					sq=Piece.b.value();
+					break;
+				case "q":
+					sq=Piece.q.value();
+					break;
+				case "k":
+					sq=Piece.k.value();
+					break;	
+				default :
+
+				}
+				setSquare((byte)(j+(BOARD_SIZE-1-i)*BOARD_SIZE), sq);
+				j=((j+1)+BOARD_SIZE)%BOARD_SIZE;
+			}
+			++i;
+		}
+
+
+	}
+
 	private void init(){
 		datas=new byte[ARRAY_SIZE];
 	}
@@ -125,14 +209,20 @@ public class Board {
 		return Pieces.getPiece(datas[squareOffset]);
 	}
 
+
+	private void setSquare(byte squareOffset,byte pieceValue){
+		// use it only for test purpose and for board deserialization
+		datas[squareOffset]=pieceValue;
+	}
+
 	public boolean isKingChecked(boolean isWhite ){
 
 		//TODO implement
 		byte kingPos=findKing(isWhite);
-		
-		
-		
-		
+
+
+
+
 		return false;
 	}
 
@@ -147,6 +237,6 @@ public class Board {
 
 		throw new InvalidBoardException("No king found");
 	}
-	
-	
+
+
 }
