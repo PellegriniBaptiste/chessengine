@@ -78,5 +78,8 @@ public class BoardTest {
 		System.out.println(board.toString());
 		Assert.assertEquals(s, board.toString());
 	}
+	
+	
+	
 
 }

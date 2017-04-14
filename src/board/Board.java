@@ -6,6 +6,7 @@ import java.util.Set;
 
 import piece.Piece;
 import piece.Pieces;
+import sun.nio.cs.ext.ISCII91;
 import move.Move;
 
 public class Board {
@@ -76,7 +77,7 @@ public class Board {
 				throw new IllegalArgumentException();
 			}
 			for(String square:squares){
-				//TODO implement
+				//TODO is this totally functional ?
 				byte sq=Piece.EMPTY.value();
 				switch(square){
 				case ".":
@@ -175,7 +176,7 @@ public class Board {
 		return sb.toString();
 	}
 
-	public void applyMove(Move move){
+	public Board applyMove(Move move){
 		//TODO implement
 		Piece piece=move.getPiece();
 		byte start=move.getStart();
@@ -185,6 +186,13 @@ public class Board {
 		datas[end]=piece.value();
 
 		//TODO update other info
+		return this;
+	}
+	
+	public boolean isMoveLegal(Move move) {
+		Board temp=new Board(this);
+		temp.applyMove(move);
+		return !temp.isKingChecked(Piece.WHITE==move.getPiece().getColor());
 	}
 
 	public Set<Move> getAllowedMoves(){
@@ -202,7 +210,7 @@ public class Board {
 		Set<Move> allowedMoves=new HashSet<Move>();
 		Piece piece=getPiece(squareOffset);
 		//TODO implement
-		return piece.getAllowedMoves(this);
+		return piece.getAllowedMoves(this,squareOffset);
 	}
 
 	public Piece getPiece(byte squareOffset){
@@ -217,11 +225,100 @@ public class Board {
 
 	public boolean isKingChecked(boolean isWhite ){
 
-		//TODO implement
+		//TODO test in depth
+		//TODO finish testing
+		//for now the tests are successful
+		
 		byte kingPos=findKing(isWhite);
+		
+		if(kingPos<00||kingPos>077){
+			throw(new InvalidBoardException("No king found"));
+		}
 
-
-
+		byte pos;
+		for(Direction dir : Direction.values()){
+			switch(dir){
+			case SOUTH:
+			case NORTH:
+			case EAST:
+			case WEST:
+				pos=dir.getStep(kingPos);
+				if(pos<0||pos>077){
+					break;
+				}
+				if((isWhite&&Piece.r.equals(getPiece(pos)))||(!isWhite&&Piece.R.equals(getPiece(pos)))
+						||(isWhite&&Piece.q.equals(getPiece(pos)))||(!isWhite&&Piece.Q.equals(getPiece(pos)))
+						||(isWhite&&Piece.k.equals(getPiece(pos)))||(!isWhite&&Piece.K.equals(getPiece(pos)))
+						){
+					return true;
+				}
+				while(pos>-01&&pos<0100 && Piece.EMPTY.equals(getPiece(pos))){
+					pos=dir.getStep(pos);
+				}
+				if(!(pos<0||pos>077)){
+					if((isWhite&&Piece.r.equals(getPiece(pos)))||(!isWhite&&Piece.R.equals(getPiece(pos)))
+							||(isWhite&&Piece.q.equals(getPiece(pos)))||(!isWhite&&Piece.Q.equals(getPiece(pos)))
+							){
+						return true;
+					}
+				}
+				
+			break;
+			case SOUTH_EAST:
+			case SOUTH_WEST:
+			case NORTH_EAST:
+			case NORTH_WEST:
+				pos=dir.getStep(kingPos);
+				if(pos<0||pos>077){
+					break;
+				}
+				if((isWhite&&Piece.b.equals(getPiece(pos)))||(!isWhite&&Piece.B.equals(getPiece(pos)))
+						||(isWhite&&Piece.q.equals(getPiece(pos)))||(!isWhite&&Piece.Q.equals(getPiece(pos)))
+						||(isWhite&&Piece.k.equals(getPiece(pos)))||(!isWhite&&Piece.K.equals(getPiece(pos)))
+						){
+					return true;
+				}
+				//pawns	(inverse direction)				
+				if((Direction.NORTH_EAST.equals(dir)||Direction.NORTH_WEST.equals(dir))
+						&&isWhite&&Piece.p.equals(getPiece(pos))
+					||((Direction.SOUTH_EAST.equals(dir)||Direction.SOUTH_WEST.equals(dir))
+							&&!isWhite&&Piece.P.equals(getPiece(pos)))){
+					return true;
+					}
+				
+				while(pos>-01&&pos<0100 && Piece.EMPTY.equals(getPiece(pos))){
+					pos=dir.getStep(pos);
+				}
+				if(!(pos<0||pos>077)){
+					if((isWhite&&Piece.b.equals(getPiece(pos)))||(!isWhite&&Piece.B.equals(getPiece(pos)))
+							||(isWhite&&Piece.q.equals(getPiece(pos)))||(!isWhite&&Piece.Q.equals(getPiece(pos)))
+							){
+						return true;
+					}
+				}
+				
+				
+				
+			break;
+			case SOUTH_SOUTH_EAST:
+			case SOUTH_SOUTH_WEST:
+			case NORTH_NORTH_EAST:
+			case NORTH_NORTH_WEST:
+			case EAST_SOUTH_EAST:
+			case WEST_SOUTH_WEST:
+			case EAST_NORTH_EAST:
+			case WEST_NORTH_WEST:
+				pos=dir.getStep(kingPos);
+				if(pos>-01&&pos<0100){
+					if((isWhite&&Piece.n.equals(getPiece(pos)))||(!isWhite&&Piece.N.equals(getPiece(pos)))){
+						return true;
+					}
+				}
+				
+			break;
+				
+			}
+		}
 
 		return false;
 	}
@@ -236,7 +333,10 @@ public class Board {
 		}
 
 		throw new InvalidBoardException("No king found");
+		
 	}
+
+
 
 
 }

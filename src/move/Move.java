@@ -23,6 +23,17 @@ public class Move {
 		return end;
 	}
 	
+	@Override
+	public boolean equals(Object obj) {
+		Move other;
+		try{
+			other=(Move)obj;
+			return start==other.start&&end==other.end&&piece.equals(other);
+		}catch(Exception e){
+			return false;
+		}
+	}
+	
 	
 
 }
